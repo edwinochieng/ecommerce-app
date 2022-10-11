@@ -4,12 +4,20 @@ import {AiOutlineShopping,AiOutlineMinus,AiOutlinePlus} from 'react-icons/ai'
 import Link from 'next/link';
 import Image from 'next/image';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { Router } from 'next/router';
 
 function Cart() {
-    const {cart} = useContext(Store);
+    const {cart,dispatch} = useContext(Store);
+
+    const removeCartItem = (item) => {
+      dispatch({
+        type : "REMOVE_CART_ITEM",
+        payload : item
+      })
+    }
 
   return (
-    <div className='min-h-screen pt-12 sm:pt-16 lg:pt-20 px-8 sm:px-10 lg:px-32'>
+    <div className='min-h-screen pt-12 sm:pt-16 lg:pt-20 px-8 sm:px-10 lg:px-32 relative'>
        {cart.cartItems.length === 0?
         (
          <div className=' flex flex-col items-center pt-28'>
@@ -25,8 +33,8 @@ function Cart() {
         )
         :
         (
-        <div>
-            <div className='pt-10'>
+        
+            <div className='pt-10 flex flex-col items-center'>
               {cart.cartItems.map((item) => 
               (
                 <div key ={item.slug} item = {item} className = "flex gap-5 py-2">
@@ -43,12 +51,21 @@ function Cart() {
                     </div>
                     <div className='pl-14 flex flex-col justify-between'>
                        <h1 className='font-bold text-base'>${item.price}</h1> 
-                       <span className='px-1'><HighlightOffIcon sx ={{color:"#f43f5e"}}/></span>
+                       <span onClick ={()=> removeCartItem(item)} className='px-1'><HighlightOffIcon sx ={{color:"#f43f5e"}}/></span>
                     </div>
                 </div>
               ))}
+              <div className='absolute bottom-10 flex flex-col pt-4 z-10'>
+                <div className='flex justify-between text-lg'>
+                  <h1 className='font-bold'>Subtotal:</h1>
+                  <h1 className='font-bold'>${cart.cartItems.reduce((a,c) => a + c.quantity * c.price, 0)}</h1>
+                </div>
+                <div className='py-6'>
+                   <button onClick={()=> Router.push('/shipping')} className ="h-9 w-80 rounded-lg bg-rose-600 font-bold text-white text-center">Check Out</button>
+                </div>
+              </div>
             </div>
-        </div>
+        
         ) }
     </div>
   )
