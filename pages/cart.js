@@ -16,6 +16,23 @@ function Cart() {
       })
     }
 
+    const updateCartHandler = (item,value) => {
+      if(value === 'inc'){
+        const quantity = item.quantity + 1 ;
+         dispatch({
+          type : 'ADD_ITEM',
+          payload : {...item, quantity}
+        })
+      } else if(value === 'dec'){
+        const quantity =  item.quantity > 0 ? item.quantity - 1 : item.quantity;
+         dispatch({
+          type : 'ADD_ITEM',
+          payload : {...item, quantity}
+        })
+      }
+     
+    }
+
   return (
     <div className='min-h-screen pt-12 sm:pt-16 lg:pt-20 px-8 sm:px-10 lg:px-32 relative'>
        {cart.cartItems.length === 0?
@@ -44,9 +61,9 @@ function Cart() {
                     <div className='flex flex-col justify-between'>
                        <h1 className='font-bold text-lg text-gray-900'>{item.name}</h1>
                        <div className='flex'>
-                        <span className='border p-2 rounded-lg border-rose-500'><AiOutlineMinus/></span>
+                        <span onClick={()=> updateCartHandler(item, 'dec')} className='border p-2 rounded-lg border-rose-500'><AiOutlineMinus/></span>
                         <span className='mx-2 py-1 font-bold text-lg'>{item.quantity}</span>
-                        <span className='border p-2 rounded-lg bg-rose-400'><AiOutlinePlus/></span>
+                        <span onClick={()=> updateCartHandler(item, 'inc')} className='border p-2 rounded-lg bg-rose-400'><AiOutlinePlus/></span>
                        </div>
                     </div>
                     <div className='pl-14 flex flex-col justify-between'>
