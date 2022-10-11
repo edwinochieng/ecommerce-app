@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { Router } from 'next/router';
+import dynamic from 'next/dynamic';
 
 function Cart() {
     const {cart,dispatch} = useContext(Store);
@@ -88,4 +89,4 @@ function Cart() {
   )
 }
 
-export default Cart
+export default dynamic(()=> Promise.resolve(Cart), {ssr:false})
