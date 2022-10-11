@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import React, { useContext } from "react";
 import Image from "next/image";
 import products from "../../utils/data";
@@ -17,6 +17,7 @@ function ProductDetails() {
       type: "ADD_ITEM",
       payload: { ...product, quantity: 1 },
     });
+    Router.push('/cart')
   };
   return (
     <div className="min-h-screen pt-24 md:pt-28 px-5 lg:px-56 grid md:grid-cols-2 gap-1 lg:gap-12">
