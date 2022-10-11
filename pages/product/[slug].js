@@ -6,13 +6,19 @@ import { Store } from '../../context/CartContext';
 
 
 function ProductDetails() {
-    const {addToCart} =useContext(Store)
+    const {state,dispatch} =useContext(Store)
     const {query} = useRouter();
     const {slug} = query;
     const product = products.find(x => x.slug === slug)
      if(!product){
         return <h1>Product not found</h1>
      }
+     const addToCart = () => {
+        dispatch({
+            type : "ADD_ITEM",
+            payload: {...product, quantity:1}
+        })
+    }
   return (
     <div className='min-h-screen pt-24 md:pt-28 px-5 lg:px-56 grid md:grid-cols-2 gap-1 lg:gap-12'>
     <div className='bg-gray-100 rounded-2xl mx-4 px-4 lg:px-20 py-8 lg:py-10 h-[22rem] lg:h-[30rem]'>

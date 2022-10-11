@@ -34,17 +34,12 @@ export const GlobalProvider = ({children}) => {
     const [state,dispatch] = useReducer(reducer,initialState);
   
     //action
-    const addToCart = (product) => {
-        dispatch({
-            type : "ADD_ITEM",
-            payload: {...product, quantity:1}
-        })
-    }
+   
 return(
     <Store.Provider 
     value = {{
         cart: state.cart,
-        addToCart
+        dispatch
     }}>
         {children}
     </Store.Provider>
