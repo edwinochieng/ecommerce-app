@@ -5,7 +5,7 @@ import products from "../../utils/data";
 import { Store } from "../../context/CartContext";
 
 function ProductDetails() {
-  const { state, dispatch } = useContext(Store);
+  const { cart, dispatch } = useContext(Store);
   const { query } = useRouter();
   const { slug } = query;
   const product = products.find((x) => x.slug === slug);
@@ -13,9 +13,12 @@ function ProductDetails() {
     return <h1>Product not found</h1>;
   }
   const addToCart = () => {
+    const existItem = cart.cartItems.find((x) => x.slug === product.slug)
+    const quantity = existItem? existItem.quantity + 1 : 1;
+
     dispatch({
       type: "ADD_ITEM",
-      payload: { ...product, quantity: 1 },
+      payload: { ...product, quantity},
     });
     Router.push('/cart')
   };
