@@ -1,7 +1,7 @@
 import Router, { useRouter } from "next/router";
 import React, { useContext } from "react";
 import Image from "next/image";
-import products from "../../utils/data";
+import {products} from "../../utils/data";
 import { Store } from "../../context/CartContext";
 
 function ProductDetails() {
