@@ -1,4 +1,21 @@
-const products = [
+import bcrypt from 'bcryptjs';
+
+export const users = [
+   {
+      name : 'John',
+      email : 'admin@example.com',
+      password : bcrypt.hashSync('123456'),
+      isAdmin : true
+   },
+   {
+      name : 'Jane',
+      email : 'user@example.com',
+      password : bcrypt.hashSync('123456'),
+      isAdmin : false
+   }
+
+]
+export const products = [
  {
     id:1,
     name: "Iphone 14 Pro",
@@ -110,4 +127,3 @@ const products = [
 
 ]
 
-export default products;
