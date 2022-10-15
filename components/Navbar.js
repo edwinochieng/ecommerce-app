@@ -3,8 +3,10 @@ import {GiShoppingCart} from 'react-icons/gi'
 import { Store } from '../context/CartContext'
 import Link from 'next/link'
 import {useState,useEffect} from 'react'
+import {useSession} from 'next-auth/react'
 
 function Navbar() {
+    const {status, data: session} = useSession();
     const {cart} = useContext(Store)
     const [cartItemsCount, setCartItemsCount] = useState(0);
 
@@ -21,7 +23,17 @@ function Navbar() {
                 
             </div>
             
-            <div>
+            <div className='flex'>
+            <div className='px-6 text-lg'>
+             {status === 'loading'? ('loading') : 
+              (session?.user ? session.user.name : (
+                <Link href = '/login'>
+                <a>Login</a>
+                </Link>))
+             }
+            </div>
+
+            
             <Link href ='/cart'>
                <a className='flex'>
                <span><GiShoppingCart size = {28}/></span> 
