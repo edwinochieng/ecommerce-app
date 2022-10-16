@@ -79,7 +79,7 @@ function Cart() {
                   <h1 className='font-bold'>${cart.cartItems.reduce((a,c) => a + c.quantity * c.price, 0)}</h1>
                 </div>
                 <div className='py-6'>
-                   <button onClick={()=> Router.push('/shipping')} className ="h-9 w-80 rounded-lg bg-rose-600 font-bold text-white text-center">Check Out</button>
+                   <button onClick={()=> Router.push('login?redirect=/shipping')} className ="h-9 w-80 rounded-lg bg-rose-600 font-bold text-white text-center">Check Out</button>
                 </div>
               </div>
             </div>

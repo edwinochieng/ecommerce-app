@@ -4,6 +4,8 @@ import { Store } from '../context/CartContext'
 import Link from 'next/link'
 import {useState,useEffect} from 'react'
 import {useSession} from 'next-auth/react'
+import BasicMenu from './Dashboad'
+import { CircularProgress } from '@mui/material'
 
 function Navbar() {
     const {status, data: session} = useSession();
@@ -25,8 +27,8 @@ function Navbar() {
             
             <div className='flex'>
             <div className='px-6 text-lg'>
-             {status === 'loading'? ('loading') : 
-              (session?.user ? session.user.name : (
+             {status === 'loading'? <CircularProgress /> : 
+              (session?.user ? <BasicMenu/> : (
                 <Link href = '/login'>
                 <a>Login</a>
                 </Link>))
