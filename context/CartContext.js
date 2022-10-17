@@ -7,7 +7,7 @@ export const Store = createContext();
 //initial state
 const initialState = {
     cart : Cookies.get('cart')? JSON.parse(Cookies.get('cart')):
-     {cartItems:[]}
+     {cartItems:[],shippingAddress:{}}
 }
 
 //reducer
@@ -44,6 +44,19 @@ const reducer = (state,action) => {
             }
         }
     }
+    
+    case 'SAVE_SHIPPING_ADDRESS': {
+        return{
+            ...state,
+            cart: {
+                ...state.cart,
+                shippingAddress: {
+                    ...state.cart.shippingAddress,
+                    ...action.payload
+                },
+            }
+        }
+    }
     default: 
       return state;
  }
@@ -52,9 +65,7 @@ const reducer = (state,action) => {
 //global provider
 export const GlobalProvider = ({children}) => {
     const [state,dispatch] = useReducer(reducer,initialState);
-  
-    //action
-   
+
 return(
     <Store.Provider 
     value = {{
