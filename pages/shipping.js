@@ -1,13 +1,15 @@
 import Cookies from 'js-cookie';
+import { useRouter } from 'next/router';
 import React, { useContext, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import Checkout from '../components/Checkout'
 import {Store} from '../context/CartContext'
 
-function ShippingScreen() {
+export default function ShippingScreen() {
   const {handleSubmit, register , formState : {errors}, setValue} = useForm();
   const {cart,dispatch} = useContext(Store);
   const {shippingAddress} = cart;
+  const router = useRouter();
 
   useEffect(()=>{
     setValue('fullName', shippingAddress.fullName);
@@ -24,7 +26,9 @@ function ShippingScreen() {
       payload: {fullName,address,city,postalCode,country}
     });
 
-    Cookies.set('cart', JSON.stringify({...cart, ShippingScreen : {fullName,address,city,postalCode,country}}))
+    Cookies.set('cart', JSON.stringify({...cart, ShippingScreen : {fullName,address,city,postalCode,country}}));
+
+    router.push('/payment')
   }
 
   return (
@@ -65,4 +69,7 @@ function ShippingScreen() {
   )
 }
 
-export default ShippingScreen
+
+
+ShippingScreen.auth = true;
+
