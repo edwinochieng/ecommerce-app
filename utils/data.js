@@ -16,7 +16,6 @@ export const users = [
 ];
 export const products = [
   {
-    id: 1,
     name: "Iphone 14 Pro",
     slug: "iphone-14-pro",
     category: "Mobile",
@@ -29,7 +28,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 2,
     name: "Airpods",
     slug: "airpods",
     category: "Audio",
@@ -42,7 +40,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 3,
     name: "Ear buds",
     slug: "ear-buds",
     category: "Audio",
@@ -55,7 +52,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 4,
     name: "Samsung Galaxy S22 ",
     slug: "galaxy-S22",
     category: "Mobile",
@@ -68,7 +64,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 5,
     name: "Headset",
     slug: "headset",
     category: "Audio",
@@ -81,7 +76,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 6,
     name: "Macbook Pro",
     slug: "macbook-pro",
     category: "Laptops",
@@ -94,7 +88,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 7,
     name: "MSI",
     slug: "msi",
     category: "Laptops",
@@ -107,7 +100,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 8,
     name: "Redmi",
     slug: "redmi",
     category: "Mobile",
@@ -120,7 +112,6 @@ export const products = [
       "The iPhone 14 features the same A15 Bionic chip that powered the iPhone 13 Pro and iPhone 13 Pro Max. Compared to the A15 Bionic chip in last year's standard iPhone 13, the iPhone 14's chip features one additional GPU core. CNET said the iPhone 14 is speedy with fluid animations and no performance hiccups",
   },
   {
-    id: 9,
     name: "Rog gaming laptop",
     slug: "rog",
     category: "Mobile",
