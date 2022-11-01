@@ -37,7 +37,7 @@ export default function PlaceOrderScreen() {
         totalPrice,
       });
       setLoading(false);
-      dispatch({ type: "RESET_CART" });
+      dispatch({ type: "CLEAR_CART_ITEMS" });
       Cookies.set("cart", JSON.stringify({ ...cart, cartItems: [] }));
       router.push("/order/${data._id}");
     } catch (err) {
