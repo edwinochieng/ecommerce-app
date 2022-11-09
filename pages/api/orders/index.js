@@ -1,4 +1,4 @@
-import { getSession } from "next-auth";
+import { getSession } from "next-auth/react";
 import Order from "../../../models/Order";
 
 const handler = async (req, res) => {
@@ -9,12 +9,15 @@ const handler = async (req, res) => {
   }
 
   const { user } = session;
+  console.log(user);
+
   const newOrder = new Order({
     ...req.body,
-    user: user._id,
+    user: user.email,
   });
 
   const order = await newOrder.save();
+
   res.status(201).send(order);
 };
 
