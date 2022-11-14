@@ -3,7 +3,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { Store } from "../../context/CartContext";
 import Product from "../../models/Product";
-import { convertDocToObj } from "../../utils/db";
+import { connectDB, convertDocToObj } from "../../utils/db";
 import axios from "axios";
 import { toast } from "react-toastify";
 
@@ -80,6 +80,7 @@ function ProductDetails({ product }) {
 export async function getServerSideProps({ params }) {
   const { slug } = params;
 
+  await connectDB();
   const product = await Product.findOne({ slug }).lean();
 
   return {

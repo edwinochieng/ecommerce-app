@@ -1,5 +1,6 @@
 import { getSession } from "next-auth/react";
 import Order from "../../../models/Order";
+import { connectDB } from "../../../utils/db";
 
 const handler = async (req, res) => {
   const session = await getSession({ req });
@@ -9,6 +10,8 @@ const handler = async (req, res) => {
   }
 
   const { user } = session;
+
+  await connectDB();
 
   const newOrder = new Order({
     ...req.body,

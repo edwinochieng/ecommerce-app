@@ -1,5 +1,6 @@
 import User from "../../../models/User";
 import bcryptjs from "bcryptjs";
+import { connectDB } from "../../../utils/db";
 
 async function handler(req, res) {
   if (req.method !== "POST") {
@@ -20,6 +21,8 @@ async function handler(req, res) {
     });
     return;
   }
+
+  await connectDB();
 
   const existingUser = await User.findOne({ email: email });
 
