@@ -6,7 +6,9 @@ import HeroBanner from "../components/HeroBanner";
 import ProductItem from "../components/Product";
 import { Store } from "../context/CartContext";
 import Product from "../models/Product";
-import { convertDocToObj } from "../utils/db";
+import User from "../models/User";
+import { users, goods } from "../utils/data";
+import { connectDB, convertDocToObj } from "../utils/db";
 
 export default function Home({ products }) {
   const { cart, dispatch } = useContext(Store);
@@ -31,23 +33,30 @@ export default function Home({ products }) {
   return (
     <div>
       <Head>
-        <title>E-commerce App</title>
+        <title>Ecommerce App</title>
       </Head>
       <HeroBanner />
-      <div className='pt-12 sm:pt-16 lg:pt-20 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8'>
-        {products?.map((product) => (
-          <ProductItem
-            key={product.id}
-            product={product}
-            addToCartHandler={addToCart}
-          />
-        ))}
+      <div className='py-8 sm:py-16 '>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-8'>
+          {products?.map((product) => (
+            <ProductItem
+              key={product.name}
+              product={product}
+              addToCartHandler={addToCart}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  await connectDB();
+  await User.deleteMany();
+  await User.insertMany(users);
+  await Product.deleteMany();
+  await Product.insertMany(goods);
   const products = await Product.find().lean();
 
   return {

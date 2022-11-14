@@ -6,10 +6,11 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        'montserrat': 'Montserrat'
-      }
+      fontFamily: {
+        montserrat: "Montserrat",
+        raleway: "Raleway",
+      },
     },
   },
   plugins: [],
-}
+};

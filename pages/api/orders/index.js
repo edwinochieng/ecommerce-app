@@ -9,7 +9,6 @@ const handler = async (req, res) => {
   }
 
   const { user } = session;
-  console.log(user);
 
   const newOrder = new Order({
     ...req.body,

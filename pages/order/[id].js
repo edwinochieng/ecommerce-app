@@ -69,7 +69,7 @@ export default function OrderDetails() {
       };
       loadPaypalScript();
     }
-  }, [order, orderId, paypalDispatch]);
+  }, [order, orderId, paypalDispatch, successPay]);
 
   const {
     shippingAddress,
@@ -115,8 +115,8 @@ export default function OrderDetails() {
     toast.error(getError(err));
   }
   return (
-    <div>
-      <h1>Order ${order._id}</h1>
+    <div className='max-w-screen-xl w-full mx-auto '>
+      <h1 className='font-semibold text-[22px] py-4'>Order {order._id}</h1>
       {loading ? (
         <div>Loading</div>
       ) : error ? (
@@ -124,49 +124,54 @@ export default function OrderDetails() {
       ) : (
         <div className='grid md:grid-cols-2 gap-5'>
           <div className='w-full'>
-            <div className=' rounded-md shadow-2xl mt-3 p-3'>
-              <h1 className='font-semibold'>Shipping Address</h1>
-              <div className='py-2 text-[18px]'>
+            <div className=' rounded-md shadow-md mt-4 p-3'>
+              <h1 className='font-semibold text-[16px]'>Shipping Address</h1>
+              <div className='py-2 text-[16px] font-medium'>
                 {shippingAddress.fullName},{shippingAddress.address},
                 {shippingAddress.city},{shippingAddress.postalCode},
                 {shippingAddress.country}
               </div>
               <div>
                 {isDelivered ? (
-                  <div className='bg-green-400 text-green-900'>
+                  <div className='bg-green-400 text-green-900 text-[16px] font-medium p-3 rounded-lg'>
                     Delivered at {deliveredAt}
                   </div>
                 ) : (
-                  <div className='bg-red-500 text-red-900'>Not Delivered</div>
-                )}
-              </div>
-              <div>
-                <h1>Payment Method </h1>
-                {isPaid ? (
-                  <div className='bg-green-400 text-green-900'>
-                    Paid at {paidAt}
+                  <div className='bg-red-300 text-red-800 text-[16px] font-medium p-3 rounded-lg'>
+                    Not Delivered
                   </div>
-                ) : (
-                  <div className='bg-red-500 text-red-900'>Not Paid</div>
                 )}
               </div>
             </div>
-            <div className=' rounded-md shadow-2xl mt-3 p-3'>
-              <h1 className='text-lg'>Order Items</h1>
+            <div className=' rounded-md shadow-lg mt-6 p-3'>
+              <h1 className='font-semibold text-[16px]'>Payment Method </h1>
+              <h2 className='py-2 text-[14px]'>PayPal</h2>
+              {isPaid ? (
+                <div className='bg-green-400 text-green-900 text-[16px] font-medium p-3 rounded-lg'>
+                  Paid at {paidAt}
+                </div>
+              ) : (
+                <div className='bg-red-300 text-red-800 text-[16px] font-medium p-3 rounded-lg'>
+                  Not Paid
+                </div>
+              )}
+            </div>
+            <div className=' rounded-md shadow-md mt-6 p-3'>
+              <h1 className='font-semibold text-lg py-2'>Order Items</h1>
               <table className='min-w-full'>
                 <thead>
                   <tr>
                     <th className='text-left'>Item</th>
-                    <th className='text-right'>Quantity</th>
-                    <th className='text-right'>Price</th>
-                    <th className='text-right'>Subtotal</th>
+                    <th className='text-center px-2'>Quantity</th>
+                    <th className='text-center px-2'>Price</th>
+                    <th className='text-center'>Subtotal</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody className='py-1'>
                   {orderItems.map((item) => (
                     <tr key={item._id} className='border-b'>
-                      <td>
-                        <a className='flex items-center'>
+                      <td className='py-2'>
+                        <a className='flex items-center gap-2'>
                           <Image
                             src={item.picture}
                             height='50'
@@ -176,9 +181,9 @@ export default function OrderDetails() {
                           &nbsp;{item.name}
                         </a>
                       </td>
-                      <td className='text-right'>{item.quantity}</td>
-                      <td className='text-right'>{item.price}</td>
-                      <td className='text-right'>
+                      <td className='text-center'>{item.quantity}</td>
+                      <td className='text-center'>${item.price}</td>
+                      <td className='text-center'>
                         ${item.quantity * item.price}
                       </td>
                     </tr>
@@ -187,27 +192,27 @@ export default function OrderDetails() {
               </table>
             </div>
           </div>
-          <div className='max-w-sm w-full rounded-2xl shadow-xl p-4'>
-            <h1>Order Summary</h1>
-            <ul>
-              <li className='flex justify-between'>
+          <div className='max-w-sm w-full rounded-2xl shadow-lg p-3 min-h-[400px]'>
+            <h1 className='py-2 font-semibold text-[18px]'>Order Summary</h1>
+            <ul className='font-medium text-[17px]'>
+              <li className='flex justify-between mb-1'>
                 <div>Items</div>
                 <div>${itemsPrice}</div>
               </li>
-              <li className='flex justify-between'>
+              <li className='flex justify-between mb-1'>
                 <div>Tax</div>
                 <div>${taxPrice}</div>
               </li>
-              <li className='flex justify-between'>
+              <li className='flex justify-between mb-1'>
                 <div>Shipping</div>
                 <div>${shippingPrice}</div>
               </li>
-              <li className='flex justify-between'>
+              <li className='flex justify-between mb-1 font-semibold'>
                 <div>Total Price</div>
                 <div>${totalPrice}</div>
               </li>
               {!isPaid && (
-                <li>
+                <li className='mt-4'>
                   {isPending ? (
                     <div>Loading...</div>
                   ) : (

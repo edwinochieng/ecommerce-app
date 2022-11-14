@@ -34,40 +34,40 @@ function ProductDetails({ product }) {
     Router.push("/cart");
   };
   return (
-    <div className='min-h-screen pt-24 md:pt-28 px-5 lg:px-56 grid md:grid-cols-2 gap-1 lg:gap-12'>
-      <div className='bg-gray-100 rounded-2xl mx-4 px-4 lg:px-20 py-8 lg:py-10 h-[22rem] lg:h-[30rem]'>
+    <div className='flex flex-col sm:flex-row justify-center gap-1 lg:gap-5'>
+      <div className='bg-gray-100 w-[360px] sm:w-[480px] max-h-[480px] p-8 sm:p-20 rounded-xl mx-2'>
         <Image
           src={product?.picture}
-          height='400'
-          width='400'
+          height='300'
+          width='300'
           alt={product?.name}
         />
       </div>
-      <div className='px-4'>
+      <div className='px-2 sm:px-4'>
         <div>
           <h1 className='font-bold text-xl md:text-3xl'>{product?.name}</h1>
         </div>
         <div className='pt-2 lg:pt-4'>
           <h1 className='font-semibold text-base md:text-lg'>Description:</h1>
-          <p className='pt-1 font-medium text-sm text-gray-400'>
+          <p className='sm:max-w-[400px] pt-1 font-medium text-[14px] text-gray-400'>
             {product?.description}
           </p>
         </div>
-        <div className='pt-2 lg:pt-8'>
+        <div className='pt-2 lg:pt-4'>
           <h1 className='font-extrabold text-2xl text-rose-500'>
             ${product?.price}
           </h1>
         </div>
-        <div className='pt-2 lg:pt-4'>
+        <div className='pt-2 max-w-[155px]'>
           {product?.countInStock > 0 ? (
             <button
               onClick={addToCart}
-              className='w-32 sm:w-36 lg:w-48 h-9 sm:h-10 lg:h-12 rounded-xl shadow-lg bg-rose-400 text-white text-sm sm:text-base text-center font-bold hover:bg-white hover:text-rose-300 hover:shadow-2xl'
+              className='w-full py-3 rounded-xl shadow-lg bg-rose-400 text-white text-sm sm:text-base text-center font-bold hover:bg-white hover:text-rose-300 hover:shadow-2xl'
             >
               Add to cart
             </button>
           ) : (
-            <button className='w-32 sm:w-36 lg:w-48 h-9 sm:h-10 lg:h-12 rounded-xl shadow-2xl bg-rose-100 text-rose-400 text-base sm:text-lg text-center font-bold hover:shadow-2xl'>
+            <button className='w-full py-3 rounded-xl shadow-2xl bg-rose-100 text-rose-400 text-base sm:text-lg text-center font-bold hover:shadow-2xl'>
               Out of stock
             </button>
           )}
