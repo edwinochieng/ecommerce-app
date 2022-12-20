@@ -1,6 +1,4 @@
-# Introduction
-This app lists properties for sale and for rent, their prices and all amenities available.
-
+# Introduction.
 Click [here](https://ecommerce-app-edwinochieng.vercel.app/) to check out the live demo.
 
 ![ecommerce-3](https://user-images.githubusercontent.com/105020682/208712200-3f65dbb4-d821-4dc0-9cbf-ddc6b6650354.png)
@@ -37,7 +35,7 @@ Other packages used : mongoose, bcryptjs, js-cookie, react-hook-form, react-icon
 - Fully responsive in all devices
 
 ## Requirements
-You need to have these installed in your system:
+Before installation, you need to have these installed in your system:
 - Node.js version 10.13 or later.
 - Git
 ## Installation
